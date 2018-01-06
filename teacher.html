@@ -1,0 +1,36 @@
+<html>
+   <head>
+       <title>{{ '教师排课表' }}</title>
+   </head>
+   <h1>老师课程表</h1>
+   <body>
+       <form action="/grade.teacher">
+       <table  border="1">
+           <tr>
+               <th>教工号</th>
+               <th>学号</th>
+               <th>院系名称</th>
+               <th>课程名称</th>
+               <th>星期</th>
+               <th>老师姓名</th>
+               <th>时间</th>
+               <th>地点</th>
+               
+            </tr>
+            {% for item in items %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+                <td>{{item[4]}}</td>
+                <td>{{item[5]}}</td>
+                <td>{{item[6]}}</td>
+                <td>{{item[7]}}</td>
+            </tr>
+            {% end %}
+      </table> 
+     </form>
+     <a href="/" > 回到主课程表 </a>
+   </body>
+ </html>

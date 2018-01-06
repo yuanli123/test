@@ -1,0 +1,41 @@
+DELETE FROM schedule;
+DELETE FROM teacher;
+DELETE FROM course;
+DELETE FROM student;
+
+INSERT INTO teacher (tn, tname)  VALUES 
+    ( 't001',  '张三'),
+    ( 't002',  '李四'), 
+    ( 't003',  '王五'),
+    ( 't004',  '马六');
+
+SELECT * FROM teacher;
+
+
+INSERT INTO course (cn, cname, week)  VALUES 
+    ( 'C01', 'Java开发',  '周一'),
+    ( 'C02', '高等数学',  '周二'),
+    ( 'C03', '管理科学',  '周三'),
+    ( 'C04', '大学英语',  '周四');
+    
+SELECT * FROM course;
+
+INSERT INTO student (sn, sname)  VALUES 
+    ('S01', '计算机1301'),
+    ('S02', '经济学院1401'),
+    ('S03', '管理学院1501'),
+    ('S04', '外国语1601');
+
+SELECT * FROM student;
+
+INSERT INTO schedule (tea_tn, cou_cn, stu_sn, times, place)  VALUES 
+    ('t001','C01','S01','8:20-10:00', '一公教a201'), 
+    ('t002','C02','S03','10:20-12', '一公教b101'),
+    ('t003','C03','S04','2:00-3:40', '一公教c407'),
+    ('t004','C04','S02','4:00-5:40', '二公教d105');
+SELECT * FROM schedule;
+SELECT t.tname, c.cname, c.week, se.place, se.times, s.sname
+    FROM schedule as se
+        INNER JOIN teacher as t ON se.tea_tn = t.tn
+        INNER JOIN course as c  ON se.cou_cn = c.cn 
+        INNER JOIN student as s ON se.stu_sn = s.sn ;

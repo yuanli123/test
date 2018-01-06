@@ -1,0 +1,40 @@
+DROP TABLE IF EXISTS teacher;
+CREATE TABLE IF NOT EXISTS teacher  (
+    tn       VARCHAR(10), --教工号
+    tname     TEXT,        --姓名
+    PRIMARY KEY(tn)
+);
+CREATE UNIQUE INDEX idx_teacher_tn ON teacher(tn);
+
+DROP TABLE IF EXISTS course;
+CREATE TABLE IF NOT EXISTS course  (
+    cn       VARCHAR(10), --课程号
+    cname     TEXT,        --课程名称
+    week      TEXT,       --星期
+    PRIMARY KEY(cn)
+);
+CREATE UNIQUE INDEX idx_course_cn ON course(cn);
+
+DROP TABLE IF EXISTS student;
+CREATE TABLE IF NOT EXISTS student(
+    sn      VARCHAR(10),  --学生学号
+    sname    VARCHAR(10), --院系班级
+    PRIMARY KEY(sn)
+);
+CREATE UNIQUE INDEX idx_student_sn ON student(sn);
+
+DROP TABLE IF EXISTS schedule;
+CREATE TABLE IF NOT EXISTS   schedule(
+    tea_tn VARCHAR,     -- 教师序号
+    cou_cn VARCHAR,     -- 课程序号
+    stu_sn VARCHAR,     -- 学生序号
+    place    VARCHAR(10), --地点
+    times    VARCHAR(10), --时间
+    PRIMARY KEY(tea_tn, cou_cn,stu_sn)
+);
+ALTER TABLE schedule
+    ADD CONSTRAINT tea_tn_fk FOREIGN KEY (tea_tn) REFERENCES teacher(tn);
+ALTER TABLE schedule
+    ADD CONSTRAINT cou_cn_fk FOREIGN KEY (cou_cn) REFERENCES course(cn);
+ALTER TABLE schedule
+    ADD CONSTRAINT stu_sn_fk FOREIGN KEY (stu_sn) REFERENCES student(sn);

@@ -1,0 +1,14 @@
+<html>
+   <head>
+      <title>{{ '修改课程表' }}</title>
+   </head>
+   <body>
+      <form action="/grade.edit/{{tea_tn}}/{{cou_cn}}/{{stu_sn}}" method="post">
+        时间：<input type="text" name="times" value="{{times}}">
+        地点：<input type="text" name="place" value="{{place}}">
+        <input type="submit" value="修改">
+      </form>
+     <hr>
+     <a href="/" > 回到成绩列表 </a>
+   </body>
+ </html>

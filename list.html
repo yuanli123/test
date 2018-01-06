@@ -1,0 +1,45 @@
+<html>
+   <head>
+      <title>{{ '课程主页' }}</title>
+   </head>
+   <body>
+     <ul>
+      <form action="/grade.add" method="post">
+        <li>老师序号：<input type="text" name="tea_tn"></li>
+        <li>课程序号：<input type="text" name="cou_cn"></li>
+        <li>学生序号：<input type="text" name="stu_sn"></li>
+        <li>时间 ：   <input type="text" name="times"></li>
+        <li>地点 ：   <input type="text" name="place">
+        <input type="submit" value="添加课程"></li>
+      </form> 
+      </ul>
+     <hr>
+     <table border=1>
+        <tr>
+          <th>老师姓名</th>
+          <th>课程名称</th>
+          <th>院系班级</th>
+          <th>地点</th>
+          <th>时间</th>
+          <th>教工号</th>
+          <th>操作</th>
+        </tr>
+        {% for item in items %}
+        <tr>
+         <td>{{ item[0] }}</td>
+         <td>{{ item[1] }}</td>
+         <td>{{ item[2] }}</td>
+         <td>{{ item[3] }}</td>
+         <td>{{ item[4] }}</td>
+         <td>{{ item[5] }}</td>
+         <td>
+          [<a href="/grade.edit/{{item[5]}}/{{item[6]}}/{{item[7]}}">修改</a>]
+          [<a href="/grade.del/{{item[5]}}/{{item[6]}}/{{item[7]}}">删除</a>]
+         </td>
+        </tr>
+        {% end %}
+     </table>
+     <a href="/grade.student">学生课程表</a>
+     <a href="/grade.teacher">教师课程表</a>
+   </body>
+ </html>
